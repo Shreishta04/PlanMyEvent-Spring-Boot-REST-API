@@ -28,10 +28,7 @@ public class WeatherUtil {
         try {
             String city = weatherRequestDTO.getCity();
             LocalDate date = weatherRequestDTO.getDate();
-            System.out.println("API Key being used: " + apiKey);
-            String url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&units=metric";
-            ;
-            System.out.println("Final Weather API URL: " + url);
+            String url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + System.getenv("WEATHER_API_KEY") + "&units=metric";
             String response = restTemplate.getForObject(url, String.class);
 
             JsonNode root = objectMapper.readTree(response);
